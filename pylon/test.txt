@@ -1,0 +1,15 @@
+
+
+<tr>
+<td><span style="display:none;">2020-03-01 </span> Mar 01
+</td>
+<td><span style="display:none;">2020-03-01 </span> Mar 01
+</td>
+<td><a href="/starcraft2/World_Electronic_Sports_Games/2019" title="World Electronic Sports Games/2019">World Electronic Sports Games 2019</a>
+</td>
+<td><span class="league-icon-small-image"><a href="/starcraft2/World_Electronic_Sports_Games" title="World Electronic Sports Games"><img alt="World Electronic Sports Games" src="/commons/images/2/2c/WESG_2018_icon.png" width="50" height="50" loading="lazy" /></a></span>&#160;<a href="/starcraft2/World_Electronic_Sports_Games" title="World Electronic Sports Games">WESG</a>
+</td>
+<td>$300,000
+</td>
+<td>48
+</td>
