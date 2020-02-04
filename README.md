@@ -4,8 +4,12 @@ Checks if today is a StarCraft event and if true activates via remote a power so
 
 ## ToDo
 
-* load current file from online
+* Add documentation with photo of electronics and RF product name
 
-* Add function to activate remote power socket
+## Done
 
-* tool should check only once a day for new data
+* Add function to activate remote power socket - DONE!
+
+* tool should check only once a day for new data - DONE!
+
+* load current file from online - DONE!
