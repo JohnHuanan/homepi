@@ -72,7 +72,12 @@ for i in range (0, (len(startDatum))):
 
 # to run this script daily either
 # a) copy it to /etc/cron.daily
-# b) or edit the /etc/crontab and add a link to the script with the desired interval
+# b) or edit the /etc/crontab: Works as following:
+#    1)open terminal.
+#    2)change directory to /etc
+#    3)type "sudo nano crontab"
+#    4)settings for starting "47 1 * * * /home/pi/hompe/starcraft_final.py"
+#    5)starcraft_final.py will be executed at 1.47
 
 # source: http://raspberry.tips/raspberrypi-einsteiger/cronjob-auf-dem-raspberry-pi-einrichten
 
