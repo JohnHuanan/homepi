@@ -55,10 +55,10 @@ image_url = "https://liquipedia.net/starcraft2/Premier_Tournaments"
   
 r = requests.get(image_url) 
   
-with open("star_neu.html",'wb') as f: 
+with open("/home/pi/homepi/pylon/star_neu.html",'wb') as f: 
     f.write(r.content) 
 
-datenExtrahieren('star_neu.html')   
+datenExtrahieren('/home/pi/homepi/pylon/star_neu.html')   
 
 for i in range (0, (len(startDatum))):
     datumPasst = dateCompare(startDatum[i],endDatum[i])
@@ -76,7 +76,7 @@ for i in range (0, (len(startDatum))):
 #    1)open terminal.
 #    2)change directory to /etc
 #    3)type "sudo nano crontab"
-#    4)settings for starting "47 1 * * * /home/pi/hompe/starcraft_final.py"
+#    4)settings for starting "47 1 * * * /home/pi/homepi/starcraft_final.py"
 #    5)starcraft_final.py will be executed at 1.47
 
 # source: http://raspberry.tips/raspberrypi-einsteiger/cronjob-auf-dem-raspberry-pi-einrichten
