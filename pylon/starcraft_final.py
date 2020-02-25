@@ -3,23 +3,66 @@ import time                                                                     
 import os
 import requests 
 
-                                                                                        # Die folgende Funktion vergleicht das aktuelle Datum mit den Daten aus den Strings startString und endString... Dazu müssen der Funktion zwei Argumente übergeben werden in String-Form, die das Datum in der Form: JJJJ-MM-TT enthalten
-def dateCompare(startString, endString):
-    locTime = time.localtime()                                                          # Das aktuelle Datum wird durch die Funktion time.localtime() ermittelt und in der Variablen locTime gespeichert.
-    if locTime[0] >= int(startString[0:4]) and locTime[0] <= int(endString[0:4]):       # locTime[0] beinhaltet das Jahr als integer. Der String wird nur an den Stellen 0 bis 4 eingelesen, denn dort steht das Jahr im Format JJJ-MM-TT. Wenn das aktuelle Jahr mit dem Jahr des übergebenen Strings übereinstimmt und kleiner/gleich dem EndJahr ist, ist die Bedingung erfüllt.
-        yearTrue = True                                                                 # die Variable yearTrue wird erzeugt, die am Ende der Funktion angibt, ob das aktuelle Jahr mit den Jahren in startString und endString stehen übereinstimmt. Wenn es passt True, sonst False
-    else:
-        yearTrue = False
-    if locTime[1] >= int(startString[5:7]) and locTime[1] <= int(endString[5:7]):       # alles wie unter Jahr. Jetzt nur mit Monat. Der aktuelle Monat ist in locTime[1] gespeichert. Im String an den Positionen 5:7. die Variable monthTrue wird auf True gesetzt       
-        monthTrue = True
-    else:
-        monthTrue = False
-    if locTime[2] >= int(startString[8:10]) and locTime[1] <= int(endString[8:10]):
-        dayTrue = True
-    else:
-        dayTrue = False
+                                                                                       # Die folgende Funktion vergleicht das aktuelle Datum mit den Daten aus den Strings startString und endString... Dazu müssen der Funktion zwei Argumente übergeben werden in String-Form, die das Datum in der Form: JJJJ-MM-TT enthalte
 
-    if yearTrue == True and monthTrue == True and dayTrue == True:                      # Jetzt wird geprüft, ob Jahr und Monat und Tag passen. Diese Art ist etwas umständlich. Weil wir eigentlich nur wissen wollen, ob das ganze Datum stimmt oder nicht. Die Erzeugung von Extra-Variablen für Jahr und Monat und Tag ist viel überflüssiger Aufwand. Zwischenzeitlich aber dadurch leichter nachvollziehbar, wo der Fehler sitzt.
+# Die folgende Funktion vergleicht das aktuelle Datum mit den Daten aus den Strings startString und endString... Dazu müssen der Funktion zwei Argumente übergeben werden in String-Form, die das Datum in der Form: JJJJ-MM-TT enthalten
+def convertStrTimeToIntDays(year, month, day):
+    
+    # if input stupid return devil
+    if(month > 12):
+        return 666
+    
+    # convert year to days
+    sumYear  = year * 365
+    
+    # convert months to days
+    monthVector = [31,28,31,30,31,30,31,31,30,31,30]
+    
+    sumMonth = 0
+    for i in range(0, month-1):
+        sumMonth = sumMonth + monthVector[i]
+    
+    sumTime = sumYear + sumMonth + day
+    
+    return sumTime
+
+
+def dateCompare(startString, endString):
+    locTime = time.localtime()
+    
+    locTimeNum = convertStrTimeToIntDays(locTime[0], locTime[1], locTime[2])
+    
+    startTimeNum = convertStrTimeToIntDays(int(startString[0:4]),
+                                           int(startString[5:7]),
+                                           int(startString[8:10]))
+    
+    endTimeNum = convertStrTimeToIntDays(int(endString[0:4]),
+                                         int(endString[5:7]),
+                                         int(endString[8:10]))
+    
+    # Das aktuelle Datum wird durch die Funktion time.localtime() ermittelt und in der Variablen locTime gespeichert.
+#    if locTime[0] >= int(startString[0:4]) and locTime[0] <= int(endString[0:4]):       # locTime[0] beinhaltet das Jahr als integer. Der String wird nur an den Stellen 0 bis 4 eingelesen, denn dort steht das Jahr im Format JJJ-MM-TT. Wenn das aktuelle Jahr mit dem Jahr des übergebenen Strings übereinstimmt und kleiner/gleich dem EndJahr ist, ist die Bedingung erfüllt.
+#        yearTrue = True                                                                # die Variable yearTrue wird erzeugt, die am Ende der Funktion angibt, ob das aktuelle Jahr mit den Jahren in startString und endString stehen übereinstimmt. Wenn es passt True, sonst False
+#    else:
+#        yearTrue = False
+#    if locTime[1] >= int(startString[5:7]) and locTime[1] <= int(endString[5:7]):       # alles wie unter Jahr. Jetzt nur mit Monat. Der aktuelle Monat ist in locTime[1] gespeichert. Im String an den Positionen 5:7. die Variable monthTrue wird auf True gesetzt       
+#        monthTrue = True
+#    else:
+#        monthTrue = False
+#    if locTime[2] >= int(startString[8:10]) and locTime[2] <= int(endString[8:10]):
+#        dayTrue = True
+#    else:
+#        dayTrue = False
+#    print(locTime[0], locTime[1], locTime[2])
+#    print(int(startString[0:4]), int(startString[5:7]), int(startString[8:10]), "\n")
+#    print(int(endString[0:4]), int(endString[5:7]), int(endString[8:10]), "\n")      
+#    print(yearTrue, monthTrue,dayTrue)
+#    if yearTrue == True and monthTrue == True and dayTrue == True:                      # Jetzt wird geprüft, ob Jahr und Monat und Tag passen. Diese Art ist etwas umständlich. Weil wir eigentlich nur wissen wollen, ob das ganze Datum stimmt oder nicht. Die Erzeugung von Extra-Variablen für Jahr und Monat und Tag ist viel überflüssiger Aufwand. Zwischenzeitlich aber dadurch leichter nachvollziehbar, wo der Fehler sitzt.
+#        dateTrue = True
+#    else:
+#        dateTrue = False
+
+    if locTimeNum >= startTimeNum and locTimeNum <= endTimeNum:
         dateTrue = True
     else:
         dateTrue = False
@@ -68,7 +111,7 @@ for i in range (0, (len(startDatum))):
         break
     else:
         print("Datum passt nicht!")
-    
+
 
 # to run this script daily either
 # a) copy it to /etc/cron.daily
@@ -83,4 +126,5 @@ for i in range (0, (len(startDatum))):
 
 #os.system('Pause')
     
+
 
