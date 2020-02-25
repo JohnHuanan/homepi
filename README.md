@@ -4,11 +4,11 @@ Checks if today is a StarCraft event and if true activates via remote a power so
 
 ## ToDo
 
-* Pylon activates at the wrong time, but also at the right time ..?
-
 * Add documentation with photo of electronics and RF product name
 
 ## Done
+
+* Pylon activates at the wrong time, but also at the right time ..?
 
 * HTML is not replaced daily, but out of date
 
